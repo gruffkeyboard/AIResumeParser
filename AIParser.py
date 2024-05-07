@@ -4,7 +4,7 @@ import csv
 
 
 def open_file_with_mode(file_name, mode='r'):
-    reader = csv.reader(open(file_name, mode), delimiter=',')
+    reader = csv.reader(open(file_name, mode))
     return reader
 
 
@@ -23,8 +23,9 @@ def parseCSVFile():
     file_name = 'UpdatedResumeDataSet.csv'
     reader = open_file_with_mode(file_name, mode='r')
     for line in reader:
-        tokens = nltk.word_tokenize(line, language='English', preserve_line=True)
-        print(tokens)
+        for field in line:
+            tokens = nltk.word_tokenize(field, language='English', preserve_line=True)
+            print(tokens)
 
 
 if __name__ == '__main__':
